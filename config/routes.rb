@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resource :signup, only: [:new, :create]
+  get "/login", to: "sessions#new"
+  get "/logout", to: "sessions#destroy"
+
   get "pages/home"
   get "pages/landing"
   get "pages/app"
