@@ -1,27 +1,18 @@
-    <header
-      class="supports-backdrop-blur:bg-background/60 bg-background/95 flex w-full justify-between backdrop-blur">
-  <section class="container flex justify-between h-14 items-center">
-    <nav class="flex items-center space-x-6 text-sm font-medium">
-      <%= render_button "~", variant: :ghost, as: :link, href: root_path %>
-    </nav>
-    <nav class="flex items-center space-x-6 text-sm font-medium">
-      <%= link_to "Logout", logout_path, class: "hover:text-foreground/80 text-foreground/60 transition-colors" if signed_in? %>
-      <% if !signed_in? %>
-        <%= link_to "Signup", signup_path, class: "hover:text-foreground/80 text-foreground/60 transition-colors" %>
-        <%= link_to "Login", login_path, class: "hover:text-foreground/80 text-foreground/60 transition-colors" %>
-      <% end %>
-    </nav>
-  </section>
-</header>
-<div
-  class="container flex flex-row items-center justify-center">
+<%= render "pages/shared/header" %>
+<div class="container flex flex-row items-center justify-center">
   <div class="my-20">
     <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
       <div class="flex flex-col space-y-2 text-center">
         <h1 class="text-2xl font-semibold tracking-tight">Create an account</h1>
         <p class="text-muted-foreground text-sm">Enter your email and your password below.</p>
         <% if @user.errors.any? %>
-          <div class="text-left"><%= render_alert variant: :error, title: "Failed to Create Account", description: @user.errors.full_messages.join("</br>").html_safe %></div>
+          <div class="text-left">
+            <%= render_alert variant: :error, title: "Failed to Create Account" do %>
+              <% @user.errors.full_messages.each do |message| %>
+                <p><%= message %></p>
+              <% end %>
+            <% end %>
+          </div>
         <% end %>
       </div>
       <div class="grid gap-6">
@@ -47,8 +38,8 @@
               </div>
               <%= f.submit "Create Account" %>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
         <p class="text-muted-foreground px-8 text-center text-sm">
           By clicking continue, you agree to our
           <a
@@ -62,5 +53,6 @@
       </div>
     </div>
   </div>
-  <%= render_toast header: flash[:alert], variant: :error if flash[:alert] %>
-  <%= render_toast header: flash[:notice], variant: :default if flash[:notice] %>
+</div>
+<%= render_toast header: flash[:alert], variant: :destructive if flash[:alert] %>
+<%= render_toast header: flash[:notice], variant: :success if flash[:notice] %>
