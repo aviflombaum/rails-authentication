@@ -3,7 +3,5 @@
   <%= render "pages/landing/cta" %>
   <%= render "pages/landing/marketing" %>
   <%= render "pages/landing/blog" %>
-  <%= render "pages/landing/footer" %>
 </main>
-<%= render_toast header: flash[:alert], variant: :destructive if flash[:alert] %>
-<%= render_toast header: flash[:notice], variant: :success if flash[:notice] %>
+<%= render "pages/landing/footer" %>

@@ -11,5 +11,7 @@
   </head>
   <body>
     <%= yield %>
+    <%= render_toast header: flash[:alert], variant: :destructive if flash[:alert] %>
+    <%= render_toast header: flash[:notice], variant: :success if flash[:notice] %>
   </body>
 </html>
