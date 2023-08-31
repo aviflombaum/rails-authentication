@@ -5,6 +5,7 @@ class PasswordResetsController < ApplicationController
 
   def create
     @password_reset = PasswordReset.new(password_reset_params)
+    @password_reset.save
 
     flash[:notice] = "A link to reset your password has been sent to your email."
     redirect_to root_url

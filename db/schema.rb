@@ -19,8 +19,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_08_31_164542) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_token_expires_at"
+    t.string "password_reset_token"
+    t.datetime "password_reset_token_expires_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
