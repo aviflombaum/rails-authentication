@@ -1,7 +1,7 @@
 class PasswordReset
   include ActiveModel::Model
 
-  attr_accessor :user, :email
+  attr_accessor :user, :email, :password, :password_confirmation
 
   validates :user, presence: true
 
@@ -13,5 +13,9 @@ class PasswordReset
       @user.save
       UserMailer.password_reset(@user).deliver_now
     end
+  end
+
+  def self.find_by_valid_token(token)
+    User.where("reset_password_token = ? AND reset_password_token_expires_at > ?", token, Time.now).first
   end
 end
