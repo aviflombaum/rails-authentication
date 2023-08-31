@@ -1,9 +1,7 @@
 class PasswordReset
   include ActiveModel::Model
 
-  attr_accessor :user, :email, :password, :password_confirmation
-
-  validates :user, presence: true
+  attr_accessor :user, :email
 
   def save
     @user = User.find_by(email: email)
