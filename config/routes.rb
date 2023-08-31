@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
+  get "passwords/forgot", to: "passwords#edit"
+  patch "passwords/reset", to: "passwords#update"
+
   resource :signup, only: [:new, :create]
   get "/login", to: "sessions#new", as: "login"
   post "/sessions", to: "sessions#create"
