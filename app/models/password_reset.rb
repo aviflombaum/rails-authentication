@@ -14,6 +14,6 @@ class PasswordReset
   end
 
   def self.find_by_valid_token(token)
-    User.where("password_reset_token = ? AND password_reset_token_expires_at > ?", token, Time.now).first
+    User.where("password_reset_token = ? AND password_reset_token_expires_at > ?", token, Time.current).first
   end
 end

@@ -1,0 +1,2 @@
+module LoginLinksHelper
+end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :login_links, only: [:new, :create, :show]
+
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   resource :signup, only: [:new, :create]

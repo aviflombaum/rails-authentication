@@ -3,11 +3,11 @@
   <div class="my-20">
     <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
       <div class="flex flex-col space-y-2 text-center">
-        <h1 class="text-2xl font-semibold tracking-tight">Login to Your Account</h1>
+        <h1 class="text-2xl font-semibold tracking-tight">Reset Your Password</h1>
       </div>
       <div class="grid gap-6">
         <%= render_alert variant: :error, title: "Email and/or password not found." if flash[:alert] %>
-        <%= render_form_for(User.new, as: :user, url: sessions_path) do |f| %>
+        <%= render_form_for(@login_token, url: login_links_path) do |f| %>
           <div class="grid gap-2">
             <div class="grid gap-1">
               <%= f.label :email, class: "sr-only" %>
@@ -16,20 +16,12 @@
                                         autocorrect: "email",
                                         autocapitalize: "none" %>
             </div>
-            <div class="grid gap-1">
-              <%= f.label :password, class: "sr-only" %>
-              <%= f.password_field :password, placeholder: "Your password...",
-                                              autocomplete: "current-password" %>
-            </div>
-            <%= f.submit "Login" %>
+            <%= f.submit "Send Login Link" %>
           </div>
         <% end %>
       </div>
       <p class="text-muted-foreground px-8 text-center text-sm">
-        Request a <%= link_to "Login Link", new_login_link_path, class: "underline" %>
-      </p>
-      <p class="text-muted-foreground px-8 text-center text-sm">
-        Forgot your password? <%= link_to "Reset Your Password", new_password_reset_path, class: "underline" %>
+        Or try <%= link_to "logging into your account", login_path, class: "underline" %>.
       </p>
       <p class="text-muted-foreground px-8 text-center text-sm">
         By clicking continue, you agree to our
