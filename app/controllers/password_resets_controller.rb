@@ -26,6 +26,7 @@ class PasswordResetsController < ApplicationController
     @password_reset = PasswordResetToken.find_by_valid_token(params[:id])
     if @password_reset && @password_reset.user
       if @password_reset.user.update(user_params)
+        @password_reset.expire!
         flash[:notice] = "Your password has been updated."
         redirect_to root_url
       else

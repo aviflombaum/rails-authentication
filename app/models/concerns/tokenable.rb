@@ -22,9 +22,7 @@ module Tokenable
   class_methods do
     def find_by_valid_token(token)
       user = User.where("#{token_field} = ? AND #{token_field}_expires_at > ?", token, Time.current).first
-      if user
-        new.tap { |l| l.user = user }
-      end
+      new.tap { |l| l.user = user } if user
     end
 
     def token_field
