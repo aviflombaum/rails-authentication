@@ -16,12 +16,9 @@ class LoginLinksController < ApplicationController
 
   def create
     @login_token = LoginToken.new(login_token_params)
-    if @login_token.save
-      redirect_to root_path, notice: "Login link sent!"
-    else
-      flash.now[:alert] = "There was a problem sending the login link."
-      render :new, status: 422
-    end
+    @login_token.save
+    UserMailer.login_token(@login_token.user).deliver_later
+    redirect_to root_path, notice: "Login link sent!"
   end
 
   private

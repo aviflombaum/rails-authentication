@@ -7,7 +7,7 @@
       </div>
       <div class="grid gap-6">
         <%= render_alert variant: :error, title: "Email and/or password not found." if flash[:alert] %>
-        <%= render_form_for(@password_reset) do |f| %>
+        <%= render_form_for(@password_reset,  url: password_resets_path) do |f| %>
           <div class="grid gap-2">
             <div class="grid gap-1">
               <%= f.label :email, class: "sr-only" %>

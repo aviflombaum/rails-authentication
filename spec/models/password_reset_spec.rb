@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe PasswordReset, type: :model do
+RSpec.describe PasswordResetToken, type: :model do
   let(:user) { create(:user) }
-  let(:password_reset) { PasswordReset.new(email: user.email) }
+  let(:password_reset) { PasswordResetToken.new(email: user.email) }
 
   describe "#save" do
     context "when user is found" do
